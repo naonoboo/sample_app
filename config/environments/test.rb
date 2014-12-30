@@ -36,4 +36,8 @@ SampleApp::Application.configure do
 
   # bcrypt'のコスト冠すを下げることでテストの速度を向上させる。
   ActiveModel::SecurePassword.min_cost = true
+  
+  # default_url_options[:host] sets.
+  # config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
 end

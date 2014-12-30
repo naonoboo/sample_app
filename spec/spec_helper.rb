@@ -14,8 +14,14 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'rails_helper'
 require 'spec_helper'
 require 'capybara'
+Rails.application.routes.default_url_options[:host] = '192.168.33.10:3000'
+
+
+# require 'capybara/rspec/matchers'
+# require 'capybara/rspec/feature'
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f }
 Dir[File.dirname(__FILE__) + "/helpers/**/*.rb"].each {|f| require f }
 
@@ -44,7 +50,10 @@ RSpec.configure do |config|
   end
 
   # add the Capybara DSL to RSpec
-  config.include(Capybara::DSL)
+  ## config.include(Capybara::DSL)
+  config.include Rails.application.routes.url_helpers
+  config.include Capybara::DSL
+  config.include RSpec::Rails::RequestExampleGroup, type: :feature
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
